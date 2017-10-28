@@ -1,0 +1,34 @@
+.button-style {
+    background-color: blue;
+    width: 100px;
+    height: 60px;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.padding-bottom {
+    padding-bottom: 30px;
+}
+
+h1 {
+    font-size: 50px;
+    color: rgb(69, 5, 173);
+    text-align: center;
+}
+
+p {
+    font-size: 17px;
+    text-align: center;
+
+}
+align-picture-right{
+text-align: right;
+}
+body{
+    margin:30px;
+    background-color: powderblue;
+}h4 {color: rgb(5, 25, 255)
+
