@@ -44,30 +44,116 @@
                 srcset="">
               
        </div>
-    </div>
-    <div class="row">
-        <div style="text-align:center">
-                <h4><b>Fun Facts!</h4><b>
-                <ul>
-                   <li>I am a Sophomore at Wilson High School</li>
-                   <li>I am on Varisty Cheer</li>
-                   <li>I am the president of my chapter in USY</li>
-                   <li>My favorite type of bird is the Sage Grouse</li>
-                    <li>I have a dog named Lulu</li>
-                    <li>I was born in California</li>
-                    <li>I have been to 4/7 continents</li>
-                    <li>My favorite movie is "The Longest Ride"</li>
-                    <li>I enjoy napping</li>
-                    <li>My favorite type of bagel is cinnamon sugar</li>
-                    <li>My newest hobby is knitting</li>
-                    <li>I take my Hydroflask everywhere with me</li>
-                    <li>I speak English, Spanish, and Hebrew</li>
-                    <li>I set three alarms to wake up every morning</li>
+       <html>
+                      
 
-                </ul>
+        <body>
+        
+         
+        </body>
+        </html>
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        body {font-family: "Lato", sans-serif;}
+        
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+        
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+        
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        </style>
+        </head>
+        <body>
+        
+        <p>Click on the buttons inside the tabbed menu:</p>
+        
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'London')">About Me</button>
+          <button class="tablinks" onclick="openCity(event, 'Paris')">My Family</button>
+          <button class="tablinks" onclick="openCity(event, 'Tokyo')">Fun Facts</button>
         </div>
-    </div>
-    
+        
+        <div id="London" class="tabcontent">
+          <h3>About Me</h3>
+          <p>I am a Sophomore at Wilson High School,
+                I am on Varsity Cheer,
+                I am the president of my chapter for USY.</p>
+        </div>
+        
+        <div id="Paris" class="tabcontent">
+          <h3>My Family</h3>
+          <p>I was born in California,
+              My dad is from South Africa,
+              I have a sister in college at Cal Poly,
+              I have a dog named Lulu.</p> 
+        </div>
+        
+        <div id="Tokyo" class="tabcontent">
+          <h3>Fun Facts</h3>
+          <p>I have been to 4/7 continents,
+              My favorite movie is "The Longest Ride"
+              I enjoy napping,
+              My favorite type of bagel is cinnamon sugar,
+              I speak Hebrew, Spanish, and English.</p>
+        </div>
+        
+        <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        </script>
+                <div>
+                <button type="button" class="btn btn-primary btn-lg"
+                onclick="onClick()">
+                Let's Play a Game!
+            </button>
+            </div>
+        
+             
+
 
 
     <!--END HTML FOR ABOUT ME PAGE-->
@@ -79,7 +165,7 @@
         //it opens relative to your current path - if you are on www.mywebsite.com/index.html, this would go to
         //www.mywebsite.com/game.html
         var onClick = function () {
-            window.open('/game.html');
+            window.open('blank_game.html');
         };
 
 

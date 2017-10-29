@@ -12,7 +12,8 @@
 <body>
 
 <script type="text/javascript">
-
+    var scoreText;
+    var score = 0;
     var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
     //These three functions are required for phaser!
@@ -21,12 +22,14 @@
         game.load.image('sky', 'assets/YAY.jpeg');
         game.load.image('ground', 'assets/platform.png');
         game.load.spritesheet('hp', 'assets/sv_turtle_sheet.png', 64, 62);
+        game.load.image('berry','assets/yumb.png',30,34);
+        game.load.image('boulder','assets/boulder.png')
 
     }
 
     //Create sets up your game for you - most of your code will probably be here!
     function create() {
-
+    
         //add the sky
         game.add.sprite(0, 0, 'sky');
 
@@ -57,12 +60,51 @@
 
         player.animations.add('left', [0,1,2,3], 10, true);
         player.animations.add('right', [6, 7, 8], 10, true);
+       berries = game.add.group();
 
+  berries.enableBody = true;
 
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 30; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var berry = berries.create(i * 70, 0, 'berry');
+
+        //  Let gravity do its thing
+         berry.body.gravity.y = 200;
+
+        //  This just gives each star a slightly random bounce value
+         berry.body.bounce.y = 0.7 + Math.random() * 0.9;
+    }
+    boulders = game.add.group();
+    boulders.enableBody = true;
+
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 40; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var boulder = boulders.create(i * 80, 0, 'boulder');
+
+        //  Let gravity do its thing
+       boulder.body.gravity.y = 10;
+
+        //  This just gives each star a slightly random bounce value
+       boulder.body.bounce.y = 0.7 + Math.random() * 0.2;}
+
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: 'white' }); 
+
+    timer= game.time.create() 
+    timer.start();
+    timer.loop(1200,createBerry);
+timer.loop(2000, createBoulder);
         //  Our controls.
         cursors = game.input.keyboard.createCursorKeys();
 
+   
     }
+
+
+
 
     //Update is continously called while the game is being played - add things like
     //tracking arrow keys, etc here!
@@ -97,11 +139,66 @@
             player.animations.stop();
 
             player.frame = 0;
-        }
+            
+            
+  
 
+        }
+        game.physics.arcade.collide(boulders, platforms);
+        game.physics.arcade.overlap(player, boulders, collectBoulder, null, this);
+
+        game.physics.arcade.collide(berries, platforms);
+            game.physics.arcade.overlap(player, berries, collectBerry, null, this);
+
+      
+       
     }
 
     //add any extra functions you need here! 
+    function collectBerry (player, berry) {
+
+    // Removes the berry from the screen
+    berry.kill();
+
+    //  Add and update the score
+    score += 10;
+    scoreText.text = 'Score: ' + score;
+
+}
+
+
+function collectBoulder (player, boulder)
+{
+  // Removes the berry from the screen
+  boulder.kill();
+
+    //  Add and update the score
+    score -= 10;
+    scoreText.text = 'Score: ' + score;
+
+}
+function createBerry(){
+    var Xlocation= Math.random()*800;
+    var berry = berries.create(Xlocation,0,'berry');
+
+        //  Let gravity do its thing
+        berry.body.gravity.y = 30;
+
+        //  This just gives each star a slightly random bounce value
+         berry.body.bounce.y = 0.7 + Math.random() * 0.9;
+}   
+function createBoulder(){
+    var Xlocation= Math.random()*800;
+    var boulder = boulders.create(Xlocation,0,'boulder');
+
+        //  Let gravity do its thing
+        boulder.body.gravity.y = 20;
+
+        //  This just gives each star a slightly random bounce value
+        boulder.body.bounce.y = 0.7 + Math.random() * 0.9; }
+
+
+
 
 
 </script>
